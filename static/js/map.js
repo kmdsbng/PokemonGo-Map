@@ -296,6 +296,18 @@ function initMap() {
     redrawPokemon(map_data.pokemons);
     redrawPokemon(map_data.lure_pokemons);
   });
+
+  google.maps.event.addListener(map, 'click', function(mouseEvent) {
+    //console.log('clicked:' + mouseEvent);
+    //console.log(mouseEvent);
+    //console.log(mouseEvent.latLng);
+    //marker.setPosition(mouseEvent.latLng);
+
+    //var oldLocation = marker.getPosition();
+    var newLocation = mouseEvent.latLng;
+    marker.setPosition(newLocation);
+    changeSearchLocation(newLocation.lat(), newLocation.lng());
+  });
 }
 
 function createSearchMarker() {
