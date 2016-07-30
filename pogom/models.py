@@ -328,6 +328,8 @@ def parse_map(map_dict, iteration_num, step, step_location):
         log.debug("Upserting {} gyms".format(len(gyms)))
         bulk_upsert(Gym, gyms)
 
+    send_notify_target_pokemons(pokemons)
+
     log.info("iteration {}, step {}, Upserted {} pokemon, {} pokestops, and {} gyms".format(
       iteration_num,
       step,
@@ -344,7 +346,16 @@ def parse_map(map_dict, iteration_num, step, step_location):
 
     bulk_upsert(ScannedLocation, scanned)
 
-
+def send_notify_target_pokemons(pokemons):
+    for i in pokemons:
+        pokemon = pokemons[i]
+        cmd = "ruby /home/kameda/work/PokemonGo-Map/send_notify.rb '{}' '{}' '{}' '{}' '{}'".format(
+                pokemon['pokemon_id'],
+                pokemon['latitude'],
+                pokemon['longitude'],
+                pokemon['disappear_time'],
+                pokemon['encounter_id'])
+        os.system(cmd)
 
 def bulk_upsert(cls, data):
     num_rows = len(data.values())
