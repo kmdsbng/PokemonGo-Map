@@ -349,7 +349,7 @@ def parse_map(map_dict, iteration_num, step, step_location):
 def send_notify_target_pokemons(pokemons):
     for i in pokemons:
         pokemon = pokemons[i]
-        cmd = "ruby /home/kameda/work/PokemonGo-Map/send_notify.rb '{}' '{}' '{}' '{}' '{}'".format(
+        cmd = "ruby send_notify.rb '{}' '{}' '{}' '{}' '{}'".format(
                 pokemon['pokemon_id'],
                 pokemon['latitude'],
                 pokemon['longitude'],
