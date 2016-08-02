@@ -328,8 +328,7 @@ def parse_map(map_dict, step_location):
 
     send_notify_target_pokemons(pokemons)
 
-    log.info("step %d, Upserted %d pokemon, %d pokestops, and %d gyms".format(
-      step,
+    log.info("Upserted %d pokemon, %d pokestops, and %d gyms".format(
       pokemons_upserted,
       pokestops_upserted,
       gyms_upserted))
